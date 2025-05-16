@@ -1,4 +1,4 @@
-> .[!NOTE].
+>[!IMPORTANT]
 >Integradora II la venganza
 <h1>Que es esto</h1>
 <p>Este repositorio esta dedicado principalmente al desarrollo y gestionamiento de la segunda integradora de nuestra carrera como desarrolladores multiplataforma</p>
