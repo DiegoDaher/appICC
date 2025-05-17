@@ -11,10 +11,13 @@ _(Es de a fuerzas, si no reprobamos)_
 >esto esta todavia cocinandoce
 >esto se va a actualizar conforme avancemos
 <h2>Inegrantes</h3>
-<li>@Mario09122004
-<li>@NashRick0
-<li>@IngRamirezJezhuah
-<li>@Diego Daher Diaz Contreras
+
+<ul>
+    <li>@Mario09122004</li>
+    <li>@NashRick0</li>
+    <li>@IngRamirezJezhuah</li>
+    <li>@Diego Daher Diaz Contreras</li>
+</ul>
 
 <div>
     <div align="center">
