@@ -13,10 +13,10 @@ _(Es de a fuerzas, si no reprobamos)_
 <h2>Inegrantes</h3>
 
 <ul>
-    <li>@Mario09122004</li>
-    <li>@NashRick0</li>
-    <li>@IngRamirezJezhuah</li>
-    <li>@Diego Daher Diaz Contreras</li>
+    <li><a href="https://github.com/Mario09122004">@Mario09122004</a></li>
+    <li><a href="https://github.com/NashRick0">@NashRick0</a></li>
+    <li><a href="https://github.com/IngRamirezJezhuah">@IngRamirezJezhuah</a></li>
+    <li><a href="https://github.com/DiegoDaher">@Diego Daher Diaz Contreras</a></li>
 </ul>
 
 <div>
