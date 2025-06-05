@@ -1,0 +1,12 @@
+services:
+  api_analysis:
+    build: ./Analisis
+    ports:
+      - "3001:3001"
+    networks:
+      - config_services_app_network
+networks:
+  config_services_app_network:
+    external: true
+volumes:
+  image_products:

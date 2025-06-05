@@ -1,0 +1,28 @@
+services:
+  rabbitmq_eco:
+    image: rabbitmq:management
+    container_name: rabbitmq_eco
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    networks:
+      - app_network
+  db_proyect:
+    image: mongo:8.0.10-rc0-noble
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    ports:
+      - 27017:27017
+    networks:
+      - app_network
+    volumes:
+      - dataNoSQL:/data/db
+networks:
+  app_network:
+    driver: bridge
+volumes:
+  dataNoSQL:
