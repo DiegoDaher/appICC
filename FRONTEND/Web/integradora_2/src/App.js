@@ -1,8 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
-import Component from './Screens/Component';
+//import logo from './logo.svg';
+//import './App.css';
+import './styles.css'
+//import Component from './Screens/Component';
 
 
+function App() {
+  return (
+    <div className='contenedor'>
+      <div className='tabNavigator'>
+        <div>
+          <li><img src="./assets/menu.png" alt='coso del menu'></img></li>
+            <a href="../src/Screens/Component.jsx">
+                    <li class="bordes"></li>
+                    <li>dashboard</li>
+            </a>
+            <a href="../src/Screens/Component.jsx">
+              <li class="bordes"></li>
+              <li>pacientes</li>
+            </a>
+            <a href="../src/Screens/Component.jsx">
+              <li class="bordes"></li>
+              <li>pedidos</li>
+            </a>
+            <a href="../src/Screens/Component.jsx">
+              <li class="bordes"></li>
+              <li>muestras</li>
+            </a>
+            <a href="../src/Screens/Component.jsx">
+              <li class="bordes"></li>
+              <li>analisis</li>
+            </a>
+            <a href="../src/Screens/Component.jsx">
+              <li class="bordes"></li>
+              <li></li>
+              <div className='cerrar-sesion'></div>
+            </a>
+        </div>
+        <div className='plantilla'>
+          <p>plantila</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+/*
 function App() {
   return (
     <div className="App">
@@ -21,12 +62,14 @@ function App() {
         >
           Learn React
         </a>
-        {/*/esta*/}
+        <a className='coso' href='../public/plantila.html' target='_blank'>
+        coso
+        </a>
         <Component />
         
       </header>
     </div>
   );
 }
-
+*/
 export default App;
