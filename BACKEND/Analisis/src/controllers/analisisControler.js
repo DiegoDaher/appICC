@@ -8,7 +8,7 @@ export const getAllAnalysis = async (req, res) => {
 export const saveAnalysis = async (req, res) => {
     const { nombre, costo, diasEspera, descripcion } = req.body;
     
-    const newAnalysis = new Analysis({
+    const newAnalysis = new Analisis({
         nombre, 
         costo,
         diasEspera, 
@@ -17,7 +17,7 @@ export const saveAnalysis = async (req, res) => {
 
     const analysisSaved = await newAnalysis.save();
     return res.status(201).json({
-        message: "Analisis guardado", User: userSaved})
+        message: "Analisis guardado", Analisis: analysisSaved})
 }
 
 export const deleteAnalysis = async(req, res) => {
