@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const mongoUrl = process.env.MONGO_URI_LOCAL || 'mongodb://admin:admin@db_proyect:27017/laboratorio';
+const mongoUrl = process.env.MONGO_URI_LOCAL || 'mongodb://admin:admin@db_proyect:27017/laboratorio?authSource=admin';
 
 const connectDB = async () => {
     try{
