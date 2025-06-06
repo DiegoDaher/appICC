@@ -1,7 +1,43 @@
 import React from 'react'
+import { Outlet } from 'react-router-dom'
 
-export default function Cnpmomponent() {
+export default function Component() {
     return (
-        <div>pantalla del coso</div>
+        <div className='contenedor'>
+            <div className='tabNavigator'>
+                <div>
+                <li><img src="./assets/menu.png" alt='coso del menu'></img></li>
+                    <a href="../src/Screens/Component.jsx">
+                            <li class="bordes"></li>
+                            <li>dashboard</li>
+                    </a>
+                    <a href="../src/Screens/Component.jsx">
+                <li class="bordes"></li>
+                <li>pacientes</li>
+                    </a>
+                    <a href="../src/Screens/Component.jsx">
+                <li class="bordes"></li>
+                <li>pedidos</li>
+                    </a>
+                    <a href="../src/Screens/Component.jsx">
+                    <li class="bordes"></li>
+                    <li>muestras</li>
+                    </a>
+                    <a href="../src/Screens/Component.jsx">
+                    <li class="bordes"></li>
+                    <li>analisis</li>
+                    </a>
+                    <a href="../src/Screens/Component.jsx">
+                    <li class="bordes"></li>
+                    <li></li>
+                    <div className='cerrar-sesion'></div>
+                    </a>
+                </div>
+                <div className='plantilla'>
+                    <Outlet />
+                <p>plantila</p>
+                </div>
+            </div>
+        </div>
     )
 }
