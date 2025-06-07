@@ -6,7 +6,7 @@ export default function Component() {
         <div className='contenedor'>
             <div className='tabNavigator'>
                 <div>
-                <li><img src="./assets/menu.png" alt='coso del menu'></img></li>
+                <li><img src="./dashboard.jsx" alt='coso del menu'></img></li>
                     <a href="../src/Screens/Component.jsx">
                             <li class="bordes"></li>
                             <li>dashboard</li>
@@ -35,7 +35,7 @@ export default function Component() {
                 </div>
                 <div className='plantilla'>
                     <Outlet />
-                <p>plantila</p>
+                <p>plantilla</p>
                 </div>
             </div>
         </div>
