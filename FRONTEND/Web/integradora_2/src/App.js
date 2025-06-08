@@ -23,6 +23,9 @@ function App() {
         <Route path="/" element={<Recuperacion />}>
 
         {/* Páginas que usan ese layout */}
+
+          <Route path="/Login" element={<Login />} />
+          <Route path="/Component" element={<Component />} />
           <Route path="/Recuperacion" element={<Recuperacion />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/Pacientes" element={<Pacientes />} />
