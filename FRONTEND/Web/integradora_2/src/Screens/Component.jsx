@@ -1,43 +1,43 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, Link } from 'react-router-dom'
+//import styles from './Component.module.css';
 
-export default function Component() {
+function Component() {
     return (
         <div className='contenedor'>
             <div className='tabNavigator'>
                 <div>
-                <li><img src="./dashboard.jsx" alt='coso del menu'></img></li>
-                    <a href="../src/Screens/Component.jsx">
-                            <li class="bordes"></li>
-                            <li>dashboard</li>
-                    </a>
-                    <a href="../src/Screens/Component.jsx">
-                <li class="bordes"></li>
-                <li>pacientes</li>
-                    </a>
-                    <a href="../src/Screens/Component.jsx">
-                <li class="bordes"></li>
-                <li>pedidos</li>
-                    </a>
-                    <a href="../src/Screens/Component.jsx">
-                    <li class="bordes"></li>
-                    <li>muestras</li>
-                    </a>
-                    <a href="../src/Screens/Component.jsx">
-                    <li class="bordes"></li>
+                <img className='iconos' src="/menu.png" alt='coso del menu'></img>
+                <Link to="/Dashboard">
+                    <li className="bordes"></li>
+                    <li>Dashboard</li>
+                </Link>
+                <Link to="/Pacientes">
+                    <li className="bordes"></li>
+                    <li>Pacientes</li>
+                </Link>
+                <Link to="/Pedidos">
+                    <li className="bordes"></li>
+                    <li>Pedido</li>
+                </Link>
+                <Link to="/Muestras">
+                    <li className="bordes"></li>
+                    <li>Muestras</li>
+                </Link>
+                <Link to="/Analisis">
+                    <li className="bordes"></li>
                     <li>analisis</li>
-                    </a>
-                    <a href="../src/Screens/Component.jsx">
-                    <li class="bordes"></li>
-                    <li></li>
+                </Link>
                     <div className='cerrar-sesion'></div>
-                    </a>
+                    
                 </div>
                 <div className='plantilla'>
                     <Outlet />
-                <p>plantilla</p>
-                </div>
+                    
+                </div>  
             </div>
         </div>
     )
 }
+
+export default  Component;
