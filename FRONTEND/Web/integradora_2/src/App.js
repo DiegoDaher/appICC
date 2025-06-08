@@ -1,31 +1,34 @@
-import logo from './logo.svg';
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-import Component from './Screens/Component';
+import './styles.css';
+import './Dash.css'
+import Component from './Screens/Component.jsx';
+import Dashboard from './Screens/Dashboard.jsx';
+import Pacientes from './Screens/Pacientes.jsx';
+import  Muestras  from './Screens/Muestras.jsx';
+import Login from './Screens/Login.jsx';
+import Pedidos from './Screens/Pedidos.jsx';
+import Analisis from './Screens/Analisis.jsx';
 
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>wolare ya jalo</h1>
-        <p>estamadre me va a mostrar un hola</p>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        {/*/esta*/}
-        <Component />
-        
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {/* Layout principal */}
+        <Route path="/" element={<Component />}>
+        {/* Páginas que usan ese layout */}
+          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/Pacientes" element={<Pacientes />} />
+          <Route path="/Pedidos" element={<Pedidos />} />
+          <Route path="/Muestras" element={<Muestras />} />
+          <Route path='/Analisis' element={<Analisis />} />
+        </Route>
+        <Route path="/Login" element={ <Login />}/>
+      </Routes>
+    </Router>
   );
 }
 
