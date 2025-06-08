@@ -12,9 +12,13 @@ const Login = () => {
   };
   return (
     <div className="App">
-      <Header />
-      <Carousel />
-      <LoginForm onSubmit={handleLogin}/>
+      <div class="parent">
+          <div class="div1"><Header title="Bienvenido"/></div>
+          <div class="div2"><Carousel /></div>
+          <div class="div3"><LoginForm onSubmit={handleLogin}/></div>
+      </div>
+      
+      
     </div>
   );
 };

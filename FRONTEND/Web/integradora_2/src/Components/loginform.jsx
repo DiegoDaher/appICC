@@ -37,6 +37,7 @@ const LoginForm = ({ onSubmit }) => {
   };
 
   return (
+  <div className="card">
     <form onSubmit={handleSubmit}>
       <div>
         <label>Usuario</label>
@@ -45,7 +46,7 @@ const LoginForm = ({ onSubmit }) => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Ingrese su correo"
-        />
+          />
       </div>
       <div>
         <label>Contraseña</label>
@@ -54,12 +55,13 @@ const LoginForm = ({ onSubmit }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Ingrese su contraseña"
-        />
+          />
       </div>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <button type="submit">Iniciar sesión</button>
-      <a href="/forgot-password">Olvide la contraseña</a>
+      <a href="/Recuperacion">Olvide la contraseña</a>
     </form>
+  </div>
   );
 };
 

@@ -4,7 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import './styles.css';
 import './Dash.css'
+
 import Component from './Screens/Component.jsx';
+import Recuperacion from './Screens/Recuperacion.jsx';
 import Dashboard from './Screens/Dashboard.jsx';
 import Pacientes from './Screens/Pacientes.jsx';
 import  Muestras  from './Screens/Muestras.jsx';
@@ -18,15 +20,16 @@ function App() {
     <Router>
       <Routes>
         {/* Layout principal */}
-        <Route path="/" element={<Component />}>
+        <Route path="/" element={<Recuperacion />}>
+
         {/* Páginas que usan ese layout */}
+          <Route path="/Recuperacion" element={<Recuperacion />} />
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/Pacientes" element={<Pacientes />} />
           <Route path="/Pedidos" element={<Pedidos />} />
           <Route path="/Muestras" element={<Muestras />} />
           <Route path='/Analisis' element={<Analisis />} />
         </Route>
-        <Route path="/Login" element={ <Login />}/>
       </Routes>
     </Router>
   );
