@@ -4,10 +4,10 @@ import connectDB from "./src/config/db.js"
 
 dotenv.config();
 
-const PORT = process.env.PORT_EXPRESS;
+const PORT = process.env.PORT_EXPRESS || 3001;
 
 connectDB().then(() => {
     app.listen(PORT, () => {
-        console.log(`Server is running on http://localhost:${PORT}`);
+        console.log(`Server is running on http://localhost:${PORT}/v1/analisis`);
     });
 })

@@ -1,11 +1,13 @@
 import express from "express";
-import { getAllAnalysis, saveAnalysis, deleteAnalysis, updateAnalisys} from './../controllers/analisisControler.js'
+import { getAllAnalysis, saveAnalysis, deleteAnalysis, updateAnalisys, getAnalysisById, getAnalysisByName } from './../controllers/analisisControler.js'
 
 const router = express.Router();
 
 router.get('/', getAllAnalysis);
 router.post('/', saveAnalysis);
-router.delete('/', deleteAnalysis);
-router.put('/', updateAnalisys);
+router.delete('/:analisysId', deleteAnalysis);
+router.put('/:analisysId', updateAnalisys);
+router.get('/search/:analisysId', getAnalysisById);
+router.get('/search/name/:analisysName', getAnalysisByName)
 
 export default router;

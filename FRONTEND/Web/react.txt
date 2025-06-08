@@ -1,2 +1,0 @@
-El proyecto va a ser realizado en react
-

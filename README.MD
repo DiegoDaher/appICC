@@ -10,7 +10,7 @@ _(Es de a fuerzas, si no reprobamos)_
 > [!IMPORTANT]
 >esto esta todavia cocinandoce
 >esto se va a actualizar conforme avancemos
-<h2>Inegrantes</h3>
+<h2>Integrantes</h3>
 
 <ul>
     <li><a href="https://github.com/Mario09122004">@Mario09122004</a></li>
