@@ -5,6 +5,12 @@ services:
       - "3001:3001"
     networks:
       - config_services_app_network
+  api_users:
+    build: ./Usuarios
+    ports:
+      - "3002:3002"
+    networks:
+      - config_services_app_network
 networks:
   config_services_app_network:
     external: true
