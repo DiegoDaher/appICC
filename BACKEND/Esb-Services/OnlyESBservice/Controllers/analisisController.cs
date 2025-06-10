@@ -35,7 +35,7 @@ namespace OnlyESBservice.Controllers
             {
                 return BadRequest(ModelState);
             }
-            
+
             var json = JsonSerializer.Serialize(data);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -80,5 +80,45 @@ namespace OnlyESBservice.Controllers
             return Content(result, response.Content.Headers.ContentType?.ToString() ?? "application/json");
         }
         */
+    }
+
+    [ApiController]
+    [Route("analisis/search")]
+    public class ProxyDetailsController : ControllerBase
+    {
+        private readonly HttpClient _httpClient;
+
+        public ProxyDetailsController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClient = httpClientFactory.CreateClient();
+        }
+
+        [HttpGet("{path}")]
+        public async Task<IActionResult> Get(string path)
+        {
+            var response = await _httpClient.GetAsync($"http://api_analysis:3001/v1/analisis/search/{path}");
+            var content = await response.Content.ReadAsStringAsync();
+            return Content(content, response.Content.Headers.ContentType?.ToString() ?? "application/json");
+        }
+    }
+
+    [ApiController]
+    [Route("analisis/search/name")]
+    public class ProxySearchController : ControllerBase
+    {
+        private readonly HttpClient _httpClient;
+
+        public ProxySearchController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClient = httpClientFactory.CreateClient();
+        }
+
+        [HttpGet("{path}")]
+        public async Task<IActionResult> Get(string path)
+        {
+            var response = await _httpClient.GetAsync($"http://api_analysis:3001/v1/analisis/search/name/{path}");
+            var content = await response.Content.ReadAsStringAsync();
+            return Content(content, response.Content.Headers.ContentType?.ToString() ?? "application/json");
+        }
     }
 }
