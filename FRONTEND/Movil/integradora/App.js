@@ -1,25 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import AuthStack from './navigation/AuthStack';
 import TabNavigator from './navigation/TabNavigator';
 
-export default function App() {
-    return (
-        <NavigationContainer>
-          <TabNavigator />
-        </NavigationContainer>
-    );
-}
+export const AuthContext = React.createContext(); // Para compartir estado
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    text:{
-      color: '#fff'
-    }
-});
+export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado global
+
+  return (
+    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+      <NavigationContainer>
+        {isAuthenticated ? <TabNavigator /> : <AuthStack />}
+      </NavigationContainer>
+    </AuthContext.Provider>
+  );
+}
