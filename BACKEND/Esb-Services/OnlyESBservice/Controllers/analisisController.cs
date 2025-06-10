@@ -11,11 +11,11 @@ namespace OnlyESBservice.Controllers
 {
     [ApiController]
     [Route("analisis")]
-    public class ProxyController : ControllerBase
+    public class AnalisisController : ControllerBase
     {
         private readonly HttpClient _httpClient;
 
-        public ProxyController(IHttpClientFactory httpClientFactory)
+        public AnalisisController(IHttpClientFactory httpClientFactory)
         {
             _httpClient = httpClientFactory.CreateClient();
         }
