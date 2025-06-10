@@ -7,7 +7,7 @@ function Component() {
         <div className='contenedor'>
             <div className='tabNavigator'>
                 <div>
-                <img className='iconos' src="/menu.png" alt='coso del menu'></img>
+                <img className='menu' src="/menu.png" alt='coso del menu'></img>
                 <Link to="/Dashboard">
                     <li className="bordes"></li>
                     <li>Dashboard</li>

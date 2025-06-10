@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import './styles.css';
 import './Dash.css'
+import './analisis.css'
 import Component from './Screens/Component.jsx';
 import Dashboard from './Screens/Dashboard.jsx';
 import Pacientes from './Screens/Pacientes.jsx';

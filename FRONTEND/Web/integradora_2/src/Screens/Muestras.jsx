@@ -2,7 +2,9 @@ import React from 'react'
 
 function Muestras (){
     return (
-        <div>Muestras</div>
+        <div>
+            <p>Muestras</p>
+        </div>
     )
 }
 
