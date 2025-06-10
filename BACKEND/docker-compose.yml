@@ -5,10 +5,10 @@ services:
       - "3001:3001"
     networks:
       - config_services_app_network
-  api_users:
-    build: ./Usuarios
+  esbservice:
+    build: ./Esb-Services
     ports:
-      - "3002:3002"
+      - "3500:8080"
     networks:
       - config_services_app_network
 networks:
