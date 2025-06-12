@@ -3,13 +3,12 @@ import { View, Text, TextInput, Alert, StyleSheet, TouchableOpacity } from 'reac
 import { AuthContext } from '../App';
 import { Image } from 'react-native';
 
-const Login = () => {
+const Recovery = () => {
   const { setIsAuthenticated } = useContext(AuthContext);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
 
   const handleLogin = async () => {
-    if (!username || !password) {
+    if (!email || !password) {
       Alert.alert('Campos vacíos', 'Por favor, llena todos los campos');
       return;
     }
@@ -20,7 +19,7 @@ const Login = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
       });
 
       const data = await response.json();
@@ -44,29 +43,21 @@ const Login = () => {
             style={{ width: 120, height: 120, marginBottom: 30 }}
             resizeMode="contain"
         />
-      <Text style={styles.title}>Bienvenido</Text>
+      <Text style={styles.title}>Recuperacion</Text>
 
       <TextInput
         style={styles.input}
-        placeholder="Usuario"
-        value={username}
-        onChangeText={setUsername}
+        placeholder="Correo electrónico"
+        value={email}
+        onChangeText={setEmail}
         autoCapitalize="none"
-      />
-
-      <TextInput
-        style={styles.input}
-        placeholder="Contraseña"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
       />
 
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('recovery')}>
-            <Text style={{ color: '#3b82f6', marginTop: 20 }}>¿Olvidaste tu contraseña?</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('login')}>
+            <Text style={{ color: '#3b82f6', marginTop: 20 }}>Iniciar Sesion</Text>
             
         </TouchableOpacity>
         <Image
@@ -78,7 +69,7 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Recovery;
 
 const styles = StyleSheet.create({
   container: {
