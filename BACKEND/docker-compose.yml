@@ -23,6 +23,7 @@ services:
     environment:
       - MONGO_URI=mongodb://admin:admin@db_proyect:27017/laboratorio?authSource=admin
       - PORT=3000
+      - JWT_SECRET=lmionaserviuhgtbfoniludfxg
   esbservice:
     build: ./Esb-Services
     ports:

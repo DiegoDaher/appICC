@@ -1,6 +1,8 @@
 const Usuario = require('../models/Usuario');
 const bcrypt = require('bcryptjs');
 const { generarToken } = require('../utils/jwtHelper');
+const guardarTokenEnRedis = require('./../services/saveToke');
+
 
 exports.registrarUsuario = async (req, res) => {
   const { correo, contraseña, rol, nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento } = req.body;
@@ -49,7 +51,12 @@ exports.loginUsuario = async (req, res) => {
     }
 
     const token = generarToken(usuario);
-    res.json({ token });
+    
+    //Guardamos token
+    await guardarTokenEnRedis(usuario._id.toString(), token);
+
+    res.json({ login: "successful", token, usuario });
+    //res.json({ token });
 
   } catch (error) {
     res.status(500).json({ message: 'Error en login', error });
