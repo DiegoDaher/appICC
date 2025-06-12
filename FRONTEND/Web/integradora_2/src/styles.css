@@ -21,16 +21,13 @@
     display: flex;
     flex-wrap: wrap;
     background-color: #FFFF;
-    padding: 25vw;
-    margin-top: 0%;
+    padding: 2vw;
     margin-left: 4vw;
-    padding-right: 43vw;
-    padding-left: 43vw;
     border-radius: 1rem;
 }
 
 /*___________tab navigator___________*/
-.iconos{
+.menu{
     width: 4vw;
     height: 2.5vw;
     margin: 1vw;
@@ -53,7 +50,7 @@ a{
 
 /*_______Coso de las imagenes_______*/
 .bordes{
-    background-color: #b974c2;
+    background-color: #bf1616;
     padding: 1.5rem;
     border-radius: 2vw;
 }

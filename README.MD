@@ -3,13 +3,30 @@
 <h1>Que es esto?</h1>
 <p>Este repositorio esta dedicado principalmente al desarrollo y gestionamiento de la segunda integradora de nuestra carrera como desarrolladores multiplataforma</p>
 
-<h2>Que es la integradora?</h2>
-<p> como ya se habia mencionado este es el proyecto integradora, en nuestra universidad se le define como a integradora a la elaboracion de un proyecto dedicado a la resolucion de una problematica en el mundo laborar, con empresas reales a las cuales les ofrecemos de acuerdo a las tecnologias y aprendizajes de nuesteros estudios, poder elaborar la solucion a su problematica a traves de nuestras aptitudes (y por que es de a fuerzas y si no reprobamos)</p>
+<h2>Que es el proyecto?</h2>
+<p>Una solucion hacia un sistema de gestion hacia un laboratorio tenineod el control de sus pacientes, muestras, el analisis de resultados, entregas y monitoreo de ellas.</p>
 
-_(Es de a fuerzas, si no reprobamos)_
+<h3>Roles</h3>
+<ul>
+<li>Jefe de Laboratorio</li>
+<li>Laboratorista</li>
+<li>Contaduria</li>
+<li>Paciente</li>
+</ul>
+
+<h3>Tecnologias Integradas</h3>
+
+<ul>
+<h4>Frontend</h4>
+<li>React JS (Frontend web)</li>
+<li>React Native (Frontend Movil)</li>
+<h4>Backend</h4>
+<li>Node JS (backend modular)</li>
+<li>C# (Manejo de ESB)</li>
+</ul>
+
 > [!IMPORTANT]
->esto esta todavia cocinandoce
->esto se va a actualizar conforme avancemos
+>Es un proyecto en desarrollo
 <h2>Integrantes</h3>
 
 <ul>
