@@ -2,7 +2,7 @@ services:
   api_analysis:
     build: ./Analisis
     ports:
-      - "3001:3001"
+      - "3003:3003"
     networks:
       - config_services_app_network
   api_muestras:
@@ -17,13 +17,12 @@ services:
   api_users:
     build: ./Usuarios
     ports:
-      - "3000:3000"
+      - "3001:3001"
     networks:
       - config_services_app_network
     environment:
       - MONGO_URI=mongodb://admin:admin@db_proyect:27017/laboratorio?authSource=admin
       - PORT=3000
-      - JWT_SECRET=lmionaserviuhgtbfoniludfxg
   esbservice:
     build: ./Esb-Services
     ports:

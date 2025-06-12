@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const UsuarioSchema = new mongoose.Schema({
   correo: { type: String, unique: true, required: true },
@@ -11,4 +11,5 @@ const UsuarioSchema = new mongoose.Schema({
   status: { type: String, enum: ['activo', 'inactivo'], default: 'activo' }
 }, { timestamps: true });
 
-module.exports = mongoose.model('Usuario', UsuarioSchema);
+const Usuario = mongoose.model('Usuario', UsuarioSchema);
+export default Usuario;

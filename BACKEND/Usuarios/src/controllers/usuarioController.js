@@ -1,10 +1,16 @@
+<<<<<<< HEAD:BACKEND/Usuarios/controllers/usuarioController.js
 const Usuario = require('../models/Usuario');
 const bcrypt = require('bcryptjs');
 const { generarToken } = require('../utils/jwtHelper');
 const guardarTokenEnRedis = require('./../services/saveToke');
 
+=======
+import Usuario from '../models/Usuario.js';
+import bcrypt from 'bcryptjs';
+import { generarToken } from '../utils/jwtHelper.js';
+>>>>>>> 13281fa (Reconstruccion del Microservicio Usuarios):BACKEND/Usuarios/src/controllers/usuarioController.js
 
-exports.registrarUsuario = async (req, res) => {
+export const registrarUsuario = async (req, res) => {
   const { correo, contraseña, rol, nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento } = req.body;
 
   try {
@@ -36,7 +42,7 @@ exports.registrarUsuario = async (req, res) => {
   }
 };
 
-exports.loginUsuario = async (req, res) => {
+export const loginUsuario = async (req, res) => {
   const { correo, contraseña } = req.body;
 
   try {
@@ -63,7 +69,7 @@ exports.loginUsuario = async (req, res) => {
   }
 };
 
-exports.obtenerPerfil = async (req, res) => {
+export const obtenerPerfil = async (req, res) => {
   try {
     const usuario = await Usuario.findById(req.usuario.id).select('-contraseña');
     if (!usuario) {
@@ -72,5 +78,14 @@ exports.obtenerPerfil = async (req, res) => {
     res.json(usuario);
   } catch (error) {
     res.status(500).json({ message: 'Error obteniendo perfil', error });
+  }
+};
+
+export const obtenerUsuarios = async (req, res) => {
+  try {
+    const usuariosList = await Usuario.find();
+    res.json(usuariosList);
+  } catch (error) {
+    res.status(500).json({ message: 'Error obteniendo usuarios', error });
   }
 };
