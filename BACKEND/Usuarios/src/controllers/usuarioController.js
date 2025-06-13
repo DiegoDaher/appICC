@@ -1,14 +1,7 @@
-<<<<<<< HEAD:BACKEND/Usuarios/controllers/usuarioController.js
-const Usuario = require('../models/Usuario');
-const bcrypt = require('bcryptjs');
-const { generarToken } = require('../utils/jwtHelper');
-const guardarTokenEnRedis = require('./../services/saveToke');
-
-=======
 import Usuario from '../models/Usuario.js';
 import bcrypt from 'bcryptjs';
 import { generarToken } from '../utils/jwtHelper.js';
->>>>>>> 13281fa (Reconstruccion del Microservicio Usuarios):BACKEND/Usuarios/src/controllers/usuarioController.js
+import { guardarTokenEnRedis } from './../services/saveToke.js';
 
 export const registrarUsuario = async (req, res) => {
   const { correo, contraseña, rol, nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento } = req.body;
@@ -50,17 +43,17 @@ export const loginUsuario = async (req, res) => {
     if (!usuario) {
       return res.status(400).json({ message: 'Correo o contraseña inválidos' });
     }
-
+  
     const esValida = await bcrypt.compare(contraseña, usuario.contraseña);
     if (!esValida) {
       return res.status(400).json({ message: 'Correo o contraseña inválidos' });
     }
-
+  
     const token = generarToken(usuario);
     
     //Guardamos token
     await guardarTokenEnRedis(usuario._id.toString(), token);
-
+  
     res.json({ login: "successful", token, usuario });
     //res.json({ token });
 
