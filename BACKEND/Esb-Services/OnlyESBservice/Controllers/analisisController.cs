@@ -6,6 +6,7 @@ using System.IO;
 using System.Text.Json;
 
 using OnlyESBservice.Models;
+using OnlyESBservice.Services;
 
 namespace OnlyESBservice.Controllers
 {
@@ -14,15 +15,51 @@ namespace OnlyESBservice.Controllers
     public class AnalisisController : ControllerBase
     {
         private readonly HttpClient _httpClient;
+        private readonly RedisService _redisService;
 
-        public AnalisisController(IHttpClientFactory httpClientFactory)
+        public AnalisisController(IHttpClientFactory httpClientFactory,  RedisService redisService)
         {
             _httpClient = httpClientFactory.CreateClient();
+            _redisService = redisService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
+            // Obtener token desde header Authorization: Bearer <token>
+            string token = Request.Headers["Authorization"].FirstOrDefault()?.Split(" ").Last();
+
+            if (string.IsNullOrEmpty(token))
+                return Unauthorized("Token no proporcionado.");
+
+            // Decodificar token para obtener userId
+            string userId = JwtHelper.GetUserIdFromToken(token);
+
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized("Token inválido (no contiene userId).");
+
+            // Validar token en Redis
+            bool tokenIsValid = await _redisService.TokenExistsAsync(userId, token);
+
+            if (!tokenIsValid)
+                return Unauthorized("Token no válido o expirado.");
+
+            /*
+            //Verificacion con clave (checar)
+            if (!JwtHelper.IsValidToken(token))
+            {
+                return Unauthorized("Token inválido o expirado.");
+            }
+            */
+            //Varificar permisos
+            string userRol = JwtHelper.GetUserRolFromToken(token);
+            if (userRol != "admin") {
+                return Unauthorized("Sin autorización");
+            }
+
+            //Refrescar token
+            await _redisService.RefreshTokenTTLAsync(userId);
+
             var response = await _httpClient.GetAsync($"http://api_analysis:3003/v1/analisis");
             var content = await response.Content.ReadAsStringAsync();
             return Content(content, response.Content.Headers.ContentType?.ToString() ?? "application/json");
