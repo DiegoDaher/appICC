@@ -23,7 +23,7 @@ namespace OnlyESBservice.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var response = await _httpClient.GetAsync($"http://api_analysis:3001/v1/analisis");
+            var response = await _httpClient.GetAsync($"http://api_analysis:3003/v1/analisis");
             var content = await response.Content.ReadAsStringAsync();
             return Content(content, response.Content.Headers.ContentType?.ToString() ?? "application/json");
         }
@@ -39,7 +39,7 @@ namespace OnlyESBservice.Controllers
             var json = JsonSerializer.Serialize(data);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync("http://api_analysis:3001/v1/analisis", content);
+            var response = await _httpClient.PostAsync("http://api_analysis:3003/v1/analisis", content);
             var result = await response.Content.ReadAsStringAsync();
 
             return Content(result, response.Content.Headers.ContentType?.ToString() ?? "application/json");
@@ -48,7 +48,7 @@ namespace OnlyESBservice.Controllers
         [HttpDelete("{path}")]
         public async Task<IActionResult> Delete(string path)
         {
-            var response = await _httpClient.DeleteAsync($"http://api_analysis:3001/v1/analisis/{path}");
+            var response = await _httpClient.DeleteAsync($"http://api_analysis:3003/v1/analisis/{path}");
             var content = await response.Content.ReadAsStringAsync();
             return Content(content, response.Content.Headers.ContentType?.ToString() ?? "application/json");
         }
@@ -59,7 +59,7 @@ namespace OnlyESBservice.Controllers
             var json = JsonSerializer.Serialize(data);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PutAsync($"http://api_analysis:3001/v1/analisis/{path}", content);
+            var response = await _httpClient.PutAsync($"http://api_analysis:3003/v1/analisis/{path}", content);
 
             var result = await response.Content.ReadAsStringAsync();
             return Content(result, response.Content.Headers.ContentType?.ToString() ?? "application/json");
@@ -96,7 +96,7 @@ namespace OnlyESBservice.Controllers
         [HttpGet("{path}")]
         public async Task<IActionResult> Get(string path)
         {
-            var response = await _httpClient.GetAsync($"http://api_analysis:3001/v1/analisis/search/{path}");
+            var response = await _httpClient.GetAsync($"http://api_analysis:3003/v1/analisis/search/{path}");
             var content = await response.Content.ReadAsStringAsync();
             return Content(content, response.Content.Headers.ContentType?.ToString() ?? "application/json");
         }
@@ -116,7 +116,7 @@ namespace OnlyESBservice.Controllers
         [HttpGet("{path}")]
         public async Task<IActionResult> Get(string path)
         {
-            var response = await _httpClient.GetAsync($"http://api_analysis:3001/v1/analisis/search/name/{path}");
+            var response = await _httpClient.GetAsync($"http://api_analysis:3003/v1/analisis/search/name/{path}");
             var content = await response.Content.ReadAsStringAsync();
             return Content(content, response.Content.Headers.ContentType?.ToString() ?? "application/json");
         }
