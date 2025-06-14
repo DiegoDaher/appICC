@@ -38,5 +38,11 @@ namespace OnlyESBservice.Services
 
             await _db.KeyExpireAsync(redisKey, TimeSpan.FromMinutes(30));
         }
+
+        public async Task<bool> DeleteTokenAsync(string userId)
+        {
+            string redisKey = $"token:{userId}";
+            return await _db.KeyDeleteAsync(redisKey);
+        }
     }
 }
