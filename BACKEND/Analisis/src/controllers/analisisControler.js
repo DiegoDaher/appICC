@@ -89,6 +89,10 @@ export const updateAnalisys = async (req, res) => {
         return res.status(404).json({ message: "Analisis no encontrado."});
     }
 
+    if(!analisis.status){
+        return res.status(400).json({ message: 'Analisis dada de baja' });
+    }
+
     // Validación nombre
     if (nombre !== undefined) {
         if (typeof nombre !== 'string' || nombre.trim() === '' || !isNaN(nombre)) {

@@ -8,7 +8,8 @@ const UsuarioSchema = new mongoose.Schema({
   apellidoPaterno: String,
   apellidoMaterno: String,
   fechaNacimiento: Date,
-  status: { type: String, enum: ['activo', 'inactivo'], default: 'activo' }
+  status: { type: Boolean, default: true, required: true },
+  deleteDate: { type: Date}
 }, { timestamps: true });
 
 const Usuario = mongoose.model('Usuario', UsuarioSchema);
