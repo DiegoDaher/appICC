@@ -1,0 +1,46 @@
+services:
+  api_analysis:
+    build: ./Analisis
+    ports:
+      - "3003:3003"
+    networks:
+      - config_services_app_network
+  api_muestras:
+    build: ./Muestras
+    ports:
+      - "3002:3002"
+    networks:
+      - config_services_app_network
+    environment:
+      - MONGO_URI_LOCAL=mongodb://admin:admin@db_proyect:27017/laboratorio?authSource=admin
+      - PORT_EXPRESS=3002
+  api_users:
+    build: ./Usuarios
+    ports:
+      - "3001:3001"
+    networks:
+      - config_services_app_network
+    environment:
+      - MONGO_URI=mongodb://admin:admin@db_proyect:27017/laboratorio?authSource=admin
+      - PORT=3000
+      - JWT_SECRET=asdfghjkl
+  esbservice:
+    build: ./Esb-Services
+    ports:
+      - "3500:8080"
+    networks:
+      - config_services_app_network
+  iot_service:
+    build: ./IOT
+    ports:
+      - "3005:3005"
+    networks:
+      - config_services_app_network
+
+networks:
+  config_services_app_network:
+    external: true
+
+volumes:
+  mongo_data:
+  image_products:
