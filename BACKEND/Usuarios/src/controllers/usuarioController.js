@@ -2,6 +2,7 @@ import Usuario from '../models/Usuario.js';
 import bcrypt from 'bcryptjs';
 import { generarToken } from '../utils/jwtHelper.js';
 import { guardarTokenEnRedis } from './../services/saveToke.js';
+import { userCreatedEvent, userForgetEvent } from '../services/rabbitServicesEvent.js';
 
 export const registrarUsuario = async (req, res) => {
   const { correo, contraseña, rol, nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento } = req.body;
@@ -25,6 +26,9 @@ export const registrarUsuario = async (req, res) => {
       fechaNacimiento
     });
 
+    console.log(correo, contraseña);
+    await userCreatedEvent(correo, contraseña);
+    
     await nuevoUsuario.save();
 
     const token = generarToken(nuevoUsuario);
@@ -134,7 +138,6 @@ export const updateUser = async (req, res) => {
     usuario.correo = correo != null ? correo : usuario.correo;
   }
   
-
   // Cambio de contraseña solo si viene una nueva
   if (contraseña !== undefined && contraseña !== null) {
     
@@ -147,3 +150,35 @@ export const updateUser = async (req, res) => {
   const updateUser = await usuario.save();
   return res.json({ updateUser });
 }
+
+export const forgetPassword = async (req, res) => {
+    const { correo } = req.body;
+
+    try{
+        const user = await Usuario.findOne({ correo });
+        
+        if (!user){
+            return res.status(404).json({ message: "Usuario no encontrado" });
+        }
+
+        //Generador de passwords
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i < 20; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            result += characters[randomIndex];
+        }
+        
+        const salt = await bcrypt.genSalt(10);
+        const contraseñaHasheada = await bcrypt.hash(result, salt);
+
+        user.contraseña=contraseñaHasheada;
+        await user.save();
+
+        userForgetEvent(correo, result);
+
+        return res.status(201).json({ message: "Usuario olvido la contraseña" });
+    } catch (error) {
+        return res.status(500).json({ message: "Error al restablecer contraseña del usuario" });
+    }
+};

@@ -24,6 +24,7 @@ services:
       - MONGO_URI=mongodb://admin:admin@db_proyect:27017/laboratorio?authSource=admin
       - PORT=3000
       - JWT_SECRET=asdfghjkl
+      - RABBITMQ_HOST=amqp://admin:admin@rabbitmq_eco
   esbservice:
     build: ./Esb-Services
     ports:

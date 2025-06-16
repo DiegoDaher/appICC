@@ -5,7 +5,8 @@ import {
   obtenerPerfil,
   obtenerUsuarios,
   deleteUsuario,
-  updateUser
+  updateUser,
+  forgetPassword
 } from '../controllers/usuarioController.js';
 import authMiddleware from '../middlewares/authMiddleware.js';
 
@@ -17,5 +18,6 @@ router.get('/profile', authMiddleware, obtenerPerfil);
 router.get('/', obtenerUsuarios);
 router.delete('/:userId', deleteUsuario);
 router.put('/:userId', updateUser);
+router.post('/forgetPassword', forgetPassword);
 
 export default router;
