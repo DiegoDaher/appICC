@@ -1,8 +1,9 @@
-// Dashboard.jsx
-import React from 'react';
+import React from 'react'
 
-export default function Recovery() {
-    return(
-        <h2>Bienvenido a recovery</h2>
+const recovery = () => {
+    return (
+        <div>recovery</div>
     )
 }
+
+export default recovery

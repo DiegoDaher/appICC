@@ -43,7 +43,6 @@ const RecuperacionForm = ({ onSubmit }) => {
       </div>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <button type="submit">Mandar Codigo</button>
-      <a href="/Login">Olvide la contraseña</a>
     </form>
   </div>
   );

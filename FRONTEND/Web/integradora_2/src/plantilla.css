@@ -5,11 +5,41 @@
     display: flex;
     align-items: flex-end;
 }
+/*__________Animaciones__________*/
+/*__________de centro hcia afuera arriba abajo__________*/
+.scale-up-ver-center {
+	animation: scale-up-ver-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+} 
+@keyframes scale-up-ver-center {
+    0% {
+        transform: scaleY(0.4);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
+/*__________del centro hacia afuera izq derecha__________*/
+.scale-in-hor-center {
+	animation: scale-in-hor-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+@keyframes scale-in-hor-center {
+    0% {
+        transform: scaleX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+
+/*__________estilos de las cajas de contenido__________ */
 .caja_1{
     padding: 2vw;
     margin: 1rem;
     width: 30vw;
-    height: 30vw;
+    height: 33vw;
     background-color: #f0f0f0;
     border-radius: 2rem;
 }
@@ -17,25 +47,34 @@
     padding: 2vw;
     margin: 1rem;
     width: 30vw;
-    height: 30vw;
+    height: 33vw;
     background-color: #f0f0f0;
     border-radius: 2rem;
 }
-
-.titulo{
-    text-align: center;
-}
-
 .buscador{
+    position: absolute;
     width:50vw;
     padding: 1rem;
-    margin-bottom: 37vw;
+    margin-bottom: 40vw;
     border-radius: 3rem;
     border-color: #c1bfbf;
-    position: absolute;
 }
 
-button{
+.scroll{
+    padding:0%;
+    margin:0%;
+    width: 30vw;
+    height: 33vw;
+    overflow: auto;
+}
+
+.prueba_tabla{
+    padding: 10px;
+    display: flex;
+    align-items: flex-end;
+}
+/*________Botones________*/
+.btn-agregar{
     color: #ffffff;
     background-color: #ff4242;
     border-style: none;
@@ -45,33 +84,68 @@ button{
     padding-right: 1rem;
     margin-left: 60vw;
 }
-.prueba_tabla{
-    padding: 1rem;
-    display: flex;
-    align-items: flex-end;
-}
-
-.imagenes{
+/*________iconos e imagenes________*/
+.imagen-prueba{
     width: 2vw;
     height: 2vw;
 }
-
 .iconos{
-    width: 2rem;
-    height: 2rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    padding: 7px;
+    width: 2vw;
+    height: 2vw;
+    padding: 5px;
+    display:flex;
+
+}
+.icono-user{
+    width: 2vw;
+    height: 2vw;
+    padding: 5px;
 }
 
+.acomodar-iconos{
+    position: absolute;
+    margin-left: 25vw;
+}
+.acomodar-iconos-2{
+    position: absolute;
+    margin-left: 22vw;
+}
+/*________textos________*/
 .prueba-name{
     padding: 7px;
-    padding-left: 2rem;
-    padding-right: 9rem;
+    margin-left: 2vw;
+    font-size:1vmax;
 }
 
 .detall-tex{
     position: absolute;
     margin-left: 20rem;
     margin-top: 1rem;
+}
+
+.tabla-detalles{
+    margin: .5vw;
+    padding: .5vw;
+    display: flex;
+    align-items: flex-end;
+    background-color: #d5d4d5;
+    border-radius: 2rem;
+}
+
+.titulo{
+    text-align: center;
+}
+
+.inicial-circulo {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: #E7757A;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
 }

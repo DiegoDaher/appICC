@@ -10,7 +10,7 @@ const Carousel = () => {
     }, 4000); // cambia cada 4 segundos
 
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
 
   return (
     <figure className="tarjetas">

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Muestras (){
+const Muestras =() =>{
     return (
         <div>
             <p>Muestras</p>

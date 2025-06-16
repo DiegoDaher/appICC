@@ -65,7 +65,7 @@ const Login = () => {
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Entrar</Text>
       </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate('recovery')}>
+        <TouchableOpacity onPress={() => Alert.alert('Recuperar contraseña', 'Funcionalidad no implementada')}>
             <Text style={{ color: '#3b82f6', marginTop: 20 }}>¿Olvidaste tu contraseña?</Text>
             
         </TouchableOpacity>

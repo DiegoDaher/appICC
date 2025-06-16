@@ -5,7 +5,7 @@
 }
 .contenedor{
     background-color: #FEF7FF;
-    padding: auto;
+    padding: 1vw;
     margin: auto;
 }
 
@@ -28,11 +28,11 @@
 
 /*___________tab navigator___________*/
 .menu{
-    width: 4vw;
-    height: 2.5vw;
+    width: 3vw;
+    height: 3vw;
     margin: 1vw;
     margin-top: 0vw;
-    margin-bottom: 4rem;
+
 }
 
 li{
@@ -51,11 +51,10 @@ a{
 /*_______Coso de las imagenes_______*/
 .bordes{
     background-color: #bf1616;
-    padding: 1.5rem;
+    padding: 1vw;
     border-radius: 2vw;
 }
 
 .cerrar-sesion{ 
-    margin-top: 20vw;
-
+    margin-top: 16vw;
 }
