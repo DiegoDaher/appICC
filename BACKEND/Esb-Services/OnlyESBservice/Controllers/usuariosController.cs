@@ -28,7 +28,8 @@ namespace OnlyESBservice.Controllers
         {
             var response = await _httpClient.GetAsync($"http://api_users:3001/v1/usuarios");
             var content = await response.Content.ReadAsStringAsync();
-            if (!response.IsSuccessStatusCode){
+            if (!response.IsSuccessStatusCode)
+            {
                 return StatusCode((int)response.StatusCode, content);
             }
 
@@ -165,7 +166,30 @@ namespace OnlyESBservice.Controllers
             }
 
             return NotFound(new { message = "Token no encontrado o ya eliminado" });
-            
+
+        }
+    }
+    [ApiController]
+    [Route("usuarios/forget")]
+    public class usuariosForgetController : ControllerBase
+    {
+        private readonly HttpClient _httpClient;
+
+        public usuariosForgetController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClient = httpClientFactory.CreateClient();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] JsonElement data)
+        {
+            var json = JsonSerializer.Serialize(data);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync("http://api_users:3001/v1/usuarios/forgetPassword", content);
+            var result = await response.Content.ReadAsStringAsync();
+
+            return Content(result, response.Content.Headers.ContentType?.ToString() ?? "application/json");
         }
     }
 }
