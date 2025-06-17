@@ -25,6 +25,15 @@ services:
       - PORT=3000
       - JWT_SECRET=asdfghjkl
       - RABBITMQ_HOST=amqp://admin:admin@rabbitmq_eco
+  api_email:
+    build: ./EmailService
+    ports:
+      - "3004:3004"
+    networks:
+      - config_services_app_network
+    environment:
+      - PORT_EXPRESS=3004
+      - RABBITMQ_HOST=amqp://admin:admin@rabbitmq_eco
   esbservice:
     build: ./Esb-Services
     ports:

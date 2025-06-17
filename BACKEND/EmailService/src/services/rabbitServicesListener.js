@@ -8,7 +8,7 @@ const RABBITMQ_URL = process.env.RABBITMQ_HOST;
 
 export async function userEvents() {
     try {
-        const connection = await amqp.connect(RABBITMQ_URL);
+        const connection = await amqp.connect(RABBITMQ_URL, { frameMax: 8192 });
         const channel = await connection.createChannel();
         
         const exchange = 'user_event';
@@ -49,7 +49,7 @@ export async function userEvents() {
 
 export async function userEventForget() {
     try {
-        const connection = await amqp.connect(RABBITMQ_URL);
+        const connection = await amqp.connect(RABBITMQ_URL, { frameMax: 8192 });
         const channel = await connection.createChannel();
         
         const exchange = 'user_event_forget';

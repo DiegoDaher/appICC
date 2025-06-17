@@ -1,6 +1,6 @@
 services:
   rabbitmq_eco:
-    image: rabbitmq:management
+    image: rabbitmq:3.13.7-management-alpine
     container_name: rabbitmq_eco
     ports:
       - "5672:5672"
