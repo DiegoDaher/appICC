@@ -23,7 +23,7 @@ export async function userEvents() {
         channel.consume(queue, async (msg) => {
             if (msg != null) {
                 const response = JSON.parse(msg.content.toString());
-                console.log(response);
+                //console.log(response);
 
                 // Enviar correo
                 try {
@@ -64,7 +64,7 @@ export async function userEventForget() {
         channel.consume(queue, async (msg) => {
             if (msg != null) {
                 const response = JSON.parse(msg.content.toString());
-                console.log(response);
+                //console.log(response);
 
                 // Enviar correo
                 try {
