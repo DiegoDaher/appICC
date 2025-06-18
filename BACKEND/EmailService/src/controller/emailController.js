@@ -21,16 +21,17 @@ export const sendEmail = async (req, res) => {
     }
 };
 
-export async function sendEmailWelcome(to){
+export async function sendEmailWelcome(to, password){
     let subject = "Welcome";
     let username = to;
+    let pass =  password;
     try {
         await transporter.sendMail({
             from: process.env.EMAIL_USER,
             to,
             subject,
             template: 'welcome', // Nombre de la plantilla sin extensión (views/emails/Welcome.hbs)
-            context: { username } // Pasar variables a la plantilla
+            context: { username, pass } // Pasar variables a la plantilla
         });
 
     } catch (error) {

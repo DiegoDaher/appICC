@@ -34,6 +34,8 @@ services:
     environment:
       - PORT_EXPRESS=3004
       - RABBITMQ_HOST=amqp://admin:admin@rabbitmq_eco
+      - EMAIL_USER=goku43210@gmail.com
+      - EMAIL_PASS=bdoetzgiwxpqtqvg
   esbservice:
     build: ./Esb-Services
     ports:

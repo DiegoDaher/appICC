@@ -5,12 +5,20 @@ import { guardarTokenEnRedis } from './../services/saveToke.js';
 import { userCreatedEvent, userForgetEvent } from '../services/rabbitServicesEvent.js';
 
 export const registrarUsuario = async (req, res) => {
-  const { correo, contraseña, rol, nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento } = req.body;
+  const { correo, rol, nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento } = req.body;
 
   try {
     const usuarioExistente = await Usuario.findOne({ correo });
     if (usuarioExistente) {
       return res.status(400).json({ message: 'El correo ya está registrado' });
+    }
+
+    //Generador de passwords
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let contraseña = '';
+    for (let i = 0; i < 20; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        contraseña += characters[randomIndex];
     }
 
     const salt = await bcrypt.genSalt(10);

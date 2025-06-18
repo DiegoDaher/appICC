@@ -27,7 +27,7 @@ export async function userEvents() {
 
                 // Enviar correo
                 try {
-                    await sendEmailWelcome(response.username);
+                    await sendEmailWelcome(response.user, response.pass);
                     channel.ack(msg);
                 } catch (error) {
                     console.error('Error sending welcome email:', error);
