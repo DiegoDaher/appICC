@@ -48,6 +48,16 @@ services:
       - "3005:3005"
     networks:
       - config_services_app_network
+  api_pedidos:
+    build: ./Pedidos
+    ports:
+      - "3006:3006"
+    networks:
+      - config_services_app_network
+    environment:
+      - MONGO_URI=mongodb://admin:admin@db_proyect:27017/laboratorio?authSource=admin
+      - PORT=3006
+      - JWT_SECRET=asdfghjkl
 
 networks:
   config_services_app_network:
