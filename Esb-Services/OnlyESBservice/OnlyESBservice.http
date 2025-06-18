@@ -1,6 +1,0 @@
-@OnlyESBservice_HostAddress = http://localhost:5212
-
-GET {{OnlyESBservice_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
