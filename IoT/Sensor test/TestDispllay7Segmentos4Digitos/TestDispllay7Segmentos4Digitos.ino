@@ -16,6 +16,6 @@ void setup() {
 }
 
 void loop() {
-  sevseg.setNumber(7489, 2);
+  sevseg.setNumber(5248, 2);
   sevseg.refreshDisplay();
 }

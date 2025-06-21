@@ -1,13 +1,14 @@
 #include <OneWire.h>                
 #include <DallasTemperature.h>
  
-OneWire ourWire(2); //2 Arduino uno //ESP32 pin 32
+
+OneWire ourWire(32);
  
 DallasTemperature sensors(&ourWire); //Se declara una variable u objeto para nuestro sensor
 
 void setup() {
 delay(1000);
-Serial.begin(9600); //9600    //115600
+Serial.begin(9600); //9600
 sensors.begin();   //Se inicia el sensor
 }
  

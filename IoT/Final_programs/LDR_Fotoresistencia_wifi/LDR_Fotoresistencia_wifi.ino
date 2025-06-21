@@ -9,7 +9,7 @@ const int ldrPin = A0;
 const int ledPin = 8;
 const char* deviceId = "esp32c3_001";
 
-const char* serverUrl = "http://example.com/data"; //Colocar la url del sevidor
+const char* serverUrl = "http://192.168.1.86:3005/data"; //Colocar la url del sevidor
 
 // Variables para WiFi
 String ssid;
@@ -83,9 +83,9 @@ void loop() {
   }
 
   digitalWrite(ledPin, HIGH);
-  delay(100);
+  delay(500);
   digitalWrite(ledPin, LOW);
-  delay(1000);
+  delay(500);
 }
 
 void loadWiFiCredentials() {
