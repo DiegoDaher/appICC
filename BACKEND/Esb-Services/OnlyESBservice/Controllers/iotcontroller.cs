@@ -49,4 +49,40 @@ namespace OnlyESBservice.Controllers
             return Content(content, response.Content.Headers.ContentType?.ToString() ?? "application/json");
         }
     }
+
+    [ApiController]
+    [Route("tempwet")]
+    public class IoTTempWetController : ControllerBase
+    {
+        private readonly HttpClient _httpClient;
+
+        public IoTTempWetController(IHttpClientFactory httpClientFactory)
+        {
+            _httpClient = httpClientFactory.CreateClient();
+        }
+
+        [HttpGet("{deviceId}")]
+        public async Task<IActionResult> Get(string deviceId)
+        {
+            var response = await _httpClient.GetAsync($"http://iot_service:3005/tempwet/{deviceId}");
+            var result = await response.Content.ReadAsStringAsync();
+            return Content(result, response.Content.Headers.ContentType?.ToString() ?? "application/json");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post()
+        {
+            using (var reader = new StreamReader(Request.Body))
+            {
+                var json = await reader.ReadToEndAsync();
+
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await _httpClient.PostAsync("http://iot_service:3005/tempwet", content);
+                var result = await response.Content.ReadAsStringAsync();
+
+                return Content(result, response.Content.Headers.ContentType?.ToString() ?? "application/json");
+            }
+        }
+    }
 }
