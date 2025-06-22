@@ -11,7 +11,7 @@ export const crearPedido = async (req, res, next) => {
   }
 
   try {
-    const { usuarioId, analisis, muestras, descuento, direccionEntrega, notas } = req.body;
+    const { usuarioId, analisis, porcentajeDescuento = 0, notas, anticipo } = req.body;
     
     if (!analisis || analisis.length === 0) {
       const error = new Error('Debe incluir al menos un análisis en el pedido');
@@ -26,25 +26,25 @@ export const crearPedido = async (req, res, next) => {
       return sum + parseFloat(analisisItem.precio);
     }, 0);
     
-    const descuentoConfig = descuento || { tipo: 'porcentaje', porcentaje: 0, monto: 0 };
-    
     const nuevoPedido = new Pedido({
       usuarioId,
       analisis,
-      muestras: muestras || [],
       subtotal,
-      descuento: descuentoConfig,
-      total: 0, 
-      direccionEntrega,
+      porcentajeDescuento: parseFloat(porcentajeDescuento) || 0,
+      total: 0,
       notas,
-      estado: 'creado'
+      estado: 'creado',
+      anticipo: {
+        monto: anticipo?.monto || 0,
+        fechaPago: null,
+        estado: 'pendiente'
+      }
     });
 
     // Calcular el total con descuento
     nuevoPedido.total = nuevoPedido.calcularTotal();
     
     const pedidoGuardado = await nuevoPedido.save();
-    
     
     res.status(201).json({
       success: true,
@@ -63,13 +63,14 @@ export const crearPedido = async (req, res, next) => {
 export const obtenerPedidos = async (req, res) => {
   try {
     const { usuarioId, estado } = req.query;
-    const query = {};
+    const query = { status: true }; // Solo pedidos activos
     
     if (usuarioId) query.usuarioId = usuarioId;
     if (estado) query.estado = estado;
     
     const pedidos = await Pedido.find(query)
-      .sort({ fechaCreacion: -1 });
+      .sort({ fechaCreacion: -1 })
+      .populate('usuarioId', 'nombre apellidoPaterno apellidoMaterno correo');
     
     res.status(200).json({
       success: true,
@@ -90,7 +91,8 @@ export const obtenerPedidoPorId = async (req, res) => {
   try {
     const { id } = req.params;
     
-    const pedido = await Pedido.findById(id);
+    const pedido = await Pedido.findById(id)
+      .populate('usuarioId', 'nombre apellidoPaterno apellidoMaterno correo');
     
     if (!pedido) {
       return res.status(404).json({
@@ -116,22 +118,27 @@ export const obtenerPedidoPorId = async (req, res) => {
 export const actualizarPedido = async (req, res) => {
   try {
     const { id } = req.params;
-    const actualizacion = req.body;
+    const { estado, notas, porcentajeDescuento, anticipo } = req.body;
     
-    // Si se actualizan los análisis, recalcular el subtotal
-    if (actualizacion.analisis) {
-      actualizacion.subtotal = actualizacion.analisis.reduce(
-        (sum, analisisItem) => sum + analisisItem.precio, 0
-      );
+    const actualizacion = {};
+    
+    if (estado) actualizacion.estado = estado;
+    if (notas !== undefined) actualizacion.notas = notas;
+    if (porcentajeDescuento !== undefined) {
+      actualizacion.porcentajeDescuento = parseFloat(porcentajeDescuento);
+    }
+    
+    // Actualizar anticipo si se proporciona
+    if (anticipo) {
+      actualizacion.anticipo = {
+        ...anticipo,
+        monto: parseFloat(anticipo.monto) || 0
+      };
     }
     
     const pedidoActualizado = await Pedido.findByIdAndUpdate(
       id,
-      { 
-        ...actualizacion,
-        ...(actualizacion.analisis || actualizacion.descuento ? 
-          { total: 0 } : {}) 
-      },
+      { $set: actualizacion },
       { new: true, runValidators: true }
     );
     
@@ -142,13 +149,15 @@ export const actualizarPedido = async (req, res) => {
       });
     }
     
-    if (actualizacion.analisis || actualizacion.descuento) {
+    // Recalcular el total si se actualizó el descuento
+    if (porcentajeDescuento !== undefined) {
       pedidoActualizado.total = pedidoActualizado.calcularTotal();
       await pedidoActualizado.save();
     }
     
     res.status(200).json({
       success: true,
+      message: 'Pedido actualizado exitosamente',
       data: pedidoActualizado
     });
   } catch (error) {
@@ -160,18 +169,18 @@ export const actualizarPedido = async (req, res) => {
   }
 };
 
-// Eliminar un pedido (borrado lógico)
+// Eliminar un pedido
 export const eliminarPedido = async (req, res) => {
   try {
     const { id } = req.params;
     
-    const pedidoActualizado = await Pedido.findByIdAndUpdate(
+    const pedidoEliminado = await Pedido.findByIdAndUpdate(
       id,
-      { $set: { status: false } },
+      { status: false },
       { new: true }
     );
     
-    if (!pedidoActualizado) {
+    if (!pedidoEliminado) {
       return res.status(404).json({
         success: false,
         message: 'Pedido no encontrado'
@@ -180,7 +189,8 @@ export const eliminarPedido = async (req, res) => {
     
     res.status(200).json({
       success: true,
-      message: 'Pedido eliminado correctamente'
+      message: 'Pedido eliminado exitosamente',
+      data: pedidoEliminado
     });
   } catch (error) {
     res.status(500).json({
@@ -195,8 +205,16 @@ export const eliminarPedido = async (req, res) => {
 export const obtenerPedidosPorUsuario = async (req, res) => {
   try {
     const { usuarioId } = req.params;
+    const { estado } = req.query;
     
-    const pedidos = await Pedido.find({ usuarioId })
+    const query = { 
+      usuarioId,
+      status: true 
+    };
+    
+    if (estado) query.estado = estado;
+    
+    const pedidos = await Pedido.find(query)
       .sort({ fechaCreacion: -1 });
     
     res.status(200).json({
@@ -213,41 +231,46 @@ export const obtenerPedidosPorUsuario = async (req, res) => {
   }
 };
 
-// Actualizar estado de una muestra
-export const actualizarEstadoMuestra = async (req, res) => {
+// Actualizar estado de anticipo
+export const actualizarEstadoAnticipo = async (req, res) => {
   try {
-    const { pedidoId, muestraId } = req.params;
+    const { id } = req.params;
     const { estado } = req.body;
     
-    const pedido = await Pedido.findById(pedidoId);
+    if (!['pendiente', 'pagado', 'rechazado'].includes(estado)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Estado de anticipo no válido'
+      });
+    }
     
-    if (!pedido) {
+    const actualizacion = {
+      'anticipo.estado': estado,
+      'anticipo.fechaPago': estado === 'pagado' ? new Date() : null
+    };
+    
+    const pedidoActualizado = await Pedido.findByIdAndUpdate(
+      id,
+      { $set: actualizacion },
+      { new: true, runValidators: true }
+    );
+    
+    if (!pedidoActualizado) {
       return res.status(404).json({
         success: false,
         message: 'Pedido no encontrado'
       });
     }
     
-    const muestra = pedido.muestras.id(muestraId);
-    
-    if (!muestra) {
-      return res.status(404).json({
-        success: false,
-        message: 'Muestra no encontrada en el pedido'
-      });
-    }
-    
-    muestra.estado = estado;
-    await pedido.save();
-    
     res.status(200).json({
       success: true,
-      data: muestra
+      message: 'Estado de anticipo actualizado exitosamente',
+      data: pedidoActualizado
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Error al actualizar el estado de la muestra',
+      message: 'Error al actualizar el estado del anticipo',
       error: error.message
     });
   }
