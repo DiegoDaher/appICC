@@ -28,10 +28,21 @@ services:
       - "6379:6379"
     networks:
       - app_network
-
+  evolution-api:
+    container_name: evolution_api
+    image: atendai/evolution-api:v1.8.7
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      AUTHENTICATION_API_KEY: admin
+      DASHBOARD: true
+    volumes:
+      - evolution_instances:/evolution/instances
 networks:
   app_network:
     driver: bridge
 
 volumes:
   dataNoSQL:
+  evolution_instances:
