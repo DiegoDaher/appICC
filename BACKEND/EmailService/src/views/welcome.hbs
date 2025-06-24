@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {
+         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
@@ -19,12 +19,16 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background: #007bff;
-            color: white;
+            background: #bf1616;
             text-align: center;
             padding: 15px;
-            font-size: 20px;
             border-radius: 10px 10px 0 0;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto;
+            max-width: 100px;
+            height: auto;
         }
         .content {
             padding: 20px;
@@ -46,26 +50,21 @@
             font-size: 12px;
             color: #777;
         }
-        .content img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            border-radius: 10px;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            Bienvenida
+            <img class="logo" src="cid:logoHeader" alt="Logo encabezado" />
         </div>
         <div class="content">
-            <h1>Bienvenido a Company</h1>
-            <p>{{username}}</p>
-            <p>Gracias por registrate en nuestro sistema</p>
+            <h1>Bienvenida</h1>
+            <h3>Usuario: {{username}}</h3>
             <h3>Contraseña: {{ pass }}</h3>
-            <img src="https://s0.smartresize.com/wallpaper/580/428/HD-wallpaper-working-shirt-wokring-juice-brown-hair-laptop-white-background-anime-anime-girl-hesdphones.jpg" alt="No se que poner">
+            <p>Favor de cambiar la Contraseña</p>
+        </div>
+        <div class="footer">
+            <img class="logo" src="cid:logoFooter" alt="Logo pie de página" />
         </div>
     </div>
 </body>

@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{to}}</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {
+         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
@@ -20,12 +22,16 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background: #007bff;
-            color: white;
+            background: #bf1616;
             text-align: center;
             padding: 15px;
-            font-size: 20px;
             border-radius: 10px 10px 0 0;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto;
+            max-width: 100px;
+            height: auto;
         }
         .content {
             padding: 20px;
@@ -47,27 +53,22 @@
             font-size: 12px;
             color: #777;
         }
-        .content img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            border-radius: 10px;
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            Recuperacion de contraseña
+            <img class="logo" src="cid:logoHeader" alt="Logo encabezado" />
         </div>
         <div class="content">
-            <h1>Nueva contraseña</h1>
+            <h1>Recuperacion de contraseña</h1>
             <p>Estimado usuario {{username}},</p>
-            <p>Su nueva contaseña es: {{newPass}}</p>
+            <h3>Su nueva contaseña es: {{newPass}}</h3>
             <p>Favor de cambiarla lo antes posible.</p>
         </div>
-        <img src="https://i.pinimg.com/736x/9f/89/63/9f896368b366085c15dd39262df0e3b6.jpg" alt="Pyra">
+        <div class="footer">
+            <img class="logo" src="cid:logoFooter" alt="Logo pie de página" />
+        </div>
     </div>
 </body>
 </html>

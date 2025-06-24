@@ -1,7 +1,14 @@
 import transporter from "../config/emailConfig.js";
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const imagePath = path.resolve(__dirname, '../views/photos/LOGOIICwhite.png');
 
 export const sendEmail = async (req, res) => {
     const { to, subject, nombre } = req.body; // Asegúrate de recibir 'nombre' en el body
@@ -31,7 +38,19 @@ export async function sendEmailWelcome(to, password){
             to,
             subject,
             template: 'welcome', // Nombre de la plantilla sin extensión (views/emails/Welcome.hbs)
-            context: { username, pass } // Pasar variables a la plantilla
+            context: { username, pass }, // Pasar variables a la plantilla
+            attachments: [
+                {
+                    filename: 'LOGOIICwhite.png',
+                    path: path.resolve(__dirname, '../views/photos/LOGOIICwhite.png'), // Ruta real a la imagen en tu proyecto
+                    cid: 'logoHeader' // Este "cid" se usará en el src del img
+                },
+                {
+                    filename: 'LOGOUJED.png',
+                    path: path.resolve(__dirname, '../views/photos/LOGOUJED.png'),
+                    cid: 'logoFooter'
+                }
+            ]
         });
 
     } catch (error) {
@@ -48,7 +67,19 @@ export async function sendEmailForgetPassword(to, newPass){
             to,
             subject,
             template: 'recover', // Nombre de la plantilla sin extensión (views/emails/Welcome.hbs)
-            context: { username, newPass } // Pasar variables a la plantilla
+            context: { username, newPass }, // Pasar variables a la plantilla
+            attachments: [
+                {
+                    filename: 'LOGOIICwhite.png',
+                    path: path.resolve(__dirname, '../views/photos/LOGOIICwhite.png'), // Ruta real a la imagen en tu proyecto
+                    cid: 'logoHeader' // Este "cid" se usará en el src del img
+                },
+                {
+                    filename: 'LOGOUJED.png',
+                    path: path.resolve(__dirname, '../views/photos/LOGOUJED.png'),
+                    cid: 'logoFooter'
+                }
+            ]
         });
 
     } catch (error) {
