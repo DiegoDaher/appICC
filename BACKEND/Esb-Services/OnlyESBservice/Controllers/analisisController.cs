@@ -44,13 +44,6 @@ namespace OnlyESBservice.Controllers
             if (!tokenIsValid)
                 return Unauthorized("Token no válido o expirado.");
 
-            /*
-            //Verificacion con clave (checar)
-            if (!JwtHelper.IsValidToken(token))
-            {
-                return Unauthorized("Token inválido o expirado.");
-            }
-            */
             //Varificar permisos
             string userRol = JwtHelper.GetUserRolFromToken(token);
             if (userRol != "admin") {

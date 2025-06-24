@@ -41,8 +41,9 @@ const PedidoSchema = new mongoose.Schema({
   },
   estado: {
     type: String,
-    enum: ['creado', 'en_proceso', 'completado', 'cancelado'],
-    default: 'creado'
+    enum: ['pendiente', 'pagado', 'cancelado'],
+    default: 'pendiente',
+    required: true
   },
   analisis: [AnalisisPedidoSchema],
   subtotal: {

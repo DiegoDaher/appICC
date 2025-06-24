@@ -1,6 +1,7 @@
 import Pedido from '../models/pedidoModel.js';
 import { validationResult } from 'express-validator';
 
+//Crear Pedido
 export const crearPedido = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -33,7 +34,6 @@ export const crearPedido = async (req, res, next) => {
       porcentajeDescuento: parseFloat(porcentajeDescuento) || 0,
       total: 0,
       notas,
-      estado: 'creado',
       anticipo: {
         monto: anticipo?.monto || 0,
         fechaPago: null,
