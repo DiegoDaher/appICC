@@ -51,6 +51,9 @@ services:
     environment:
       - MONGO_URI_LOCAL=mongodb://admin:admin@db_proyect:27017/laboratorio?authSource=admin
       - PORT_EXPRESS=3005
+      - API_WHATSAPP=http://evolution_api:8080/message/sendText/Alertas
+      - NUMPHONE=5216181667980
+      - TEMPERATURE=30
   api_pedidos:
     build: ./Pedidos
     ports:

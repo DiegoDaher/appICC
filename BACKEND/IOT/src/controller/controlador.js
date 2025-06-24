@@ -1,34 +1,56 @@
 import TempWet from "../models/temperatureWet.js";
-const datosDispositivos = {};
+import { enviarWhatsApp } from './../service/whatsapp.js'
 
-// Recibe datos desde el ESP32
-export const recibirDatos = (req, res) => {
+const datosDispositivos = {};
+const limitTemp = process.env.TEMPERATURE;
+
+export const recibirDatos = async (req, res) => {
     const { id, ldr } = req.body;
 
     console.log("Datos recibidos desde ESP32");
     console.log("ID del dispositivo:", id);
     console.log("Valor LDR:", ldr);
 
-    // Si el dispositivo no existe, lo inicializamos
     if (!datosDispositivos[id]) {
         datosDispositivos[id] = {
-            ldr: ldr,
+            ldr,
             ldrMax: ldr,
             ldrMin: ldr,
-            timestamp: new Date()
+            timestamp: new Date(),
+            alertaContaminadoEnviada: false,
+            alertaAdvertenciaEnviada: false
         };
     } else {
-        // Actualizamos el dato actual
         datosDispositivos[id].ldr = ldr;
         datosDispositivos[id].timestamp = new Date();
 
-        // Actualizamos el máximo y mínimo
         if (ldr > datosDispositivos[id].ldrMax) {
             datosDispositivos[id].ldrMax = ldr;
         }
         if (ldr < datosDispositivos[id].ldrMin) {
             datosDispositivos[id].ldrMin = ldr;
         }
+    }
+
+    try {
+        if (ldr > 30 && !datosDispositivos[id].alertaContaminadoEnviada) {
+            enviarWhatsApp(`❌ Muestra del contenedor ${id}, están contaminadas`);
+
+            datosDispositivos[id].alertaContaminadoEnviada = true;
+            datosDispositivos[id].alertaAdvertenciaEnviada = true;
+
+        } else if (
+            ldr > 15 &&
+            ldr <= 30 &&
+            !datosDispositivos[id].alertaContaminadoEnviada &&
+            !datosDispositivos[id].alertaAdvertenciaEnviada
+        ) {
+            enviarWhatsApp(`⚠️ Muestra del contenedor ${id}, están en precaución`);
+            datosDispositivos[id].alertaAdvertenciaEnviada = true;
+        }
+
+    } catch (error) {
+        console.error("❌ Error al enviar mensaje:", error.message);
     }
 
     res.status(200).json({ mensaje: "Datos recibidos correctamente" });
@@ -51,8 +73,7 @@ export const obtenerUltimoDato = (req, res) => {
     }
 };
 
-// Resetea el max y min de un dispositivo
-export const resetearMinMax = (req, res) => {
+export const resetearMinMax = async (req, res) => {
     const id = req.params.id;
 
     if (datosDispositivos[id]) {
@@ -60,16 +81,21 @@ export const resetearMinMax = (req, res) => {
         datosDispositivos[id].ldrMax = ldrActual;
         datosDispositivos[id].ldrMin = ldrActual;
 
+        datosDispositivos[id].alertaContaminadoEnviada = false;
+        datosDispositivos[id].alertaAdvertenciaEnviada = false;
+
+        enviarWhatsApp(`♻️ Reinicio del contenedor ${id}`);
+
         res.status(200).json({
-            mensaje: `Valores min y max reseteados para el dispositivo ${id}`,
-            ldr: ldrActual
+            mensaje: `Valores reseteados para el dispositivo ${id}`
         });
     } else {
         res.status(404).json({ mensaje: "No hay datos para este dispositivo" });
     }
 };
 
-// Recibe y guarda los datos del dispositivo TemWet
+const estadoTemperatura = {};
+
 export const registrarDatosTempWet = async (req, res) => {
   try {
     const { deviceId, ds18b20, dht11_temp, dht11_hum } = req.body;
@@ -86,6 +112,25 @@ export const registrarDatosTempWet = async (req, res) => {
     });
 
     await nuevoDato.save();
+
+    if (!estadoTemperatura[deviceId]) {
+      estadoTemperatura[deviceId] = {
+        alertaCriticaEnviada: false
+      };
+    }
+
+    const estadoActual = estadoTemperatura[deviceId];
+
+    if (ds18b20 > limitTemp && !estadoActual.alertaCriticaEnviada) {
+      await enviarWhatsApp(`🔥 Temperatura crítica en contenedor ${deviceId}`);
+      estadoActual.alertaCriticaEnviada = true;
+    }
+
+    if (ds18b20 <= limitTemp && estadoActual.alertaCriticaEnviada) {
+      await enviarWhatsApp(`✅ Temperatura normalizada en contenedor ${deviceId}`);
+      estadoActual.alertaCriticaEnviada = false;
+    }
+
     return res.status(201).json({ mensaje: "Datos guardados correctamente" });
   } catch (error) {
     console.error("Error al guardar datos:", error);

@@ -37,6 +37,8 @@ services:
     environment:
       AUTHENTICATION_API_KEY: admin
       DASHBOARD: true
+    networks:
+      - app_network
     volumes:
       - evolution_instances:/evolution/instances
 networks:
