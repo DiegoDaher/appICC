@@ -1,0 +1,122 @@
+
+/*________textos________*/
+.prueba-name{
+    padding: 1vw;
+    margin-left: 2vw;
+    font-size:1vw;
+}
+
+.precios-txt{
+    padding: 1vh;
+    font-size:1vw;
+    margin-right: 3vh;
+}
+
+.letra-circulo{
+    padding: 1vw;
+    font-size: 1.5vmin;
+    font-size: 1vmax;
+}
+
+
+
+.detall-tex{
+    position: absolute;
+    margin-left: 20vw;
+    margin-top: 1vw;
+    font-size: 1.5vmin;
+    font-size: 1vmax;
+}
+
+.descr-tex{
+    margin-top: 1vw;
+    font-size: 1.5vmin;
+    font-size: 1vmax;
+}
+
+.tabla-detalles{
+    margin: .5vw;
+    padding: .5vw;
+    display: flex;
+    align-items: flex-end;
+    background-color: #d5d4d5;
+    border-radius: 2rem;
+}
+
+.titulo{
+    padding: 0.5vw;
+    font-size: 2vmin;
+    font-size: 2vmax;
+    font-weight: bold;
+}
+
+.texto_pedidos{
+    padding-right: 2vh;
+    margin-right: 2vh;
+    font-size: .5vmin;
+    font-size: 1vmax;
+}
+
+.texto-dash{
+    padding: 0;
+    font-size: 1vmin;
+    font-size: 1.5vmax;
+    text-align: center;
+}
+
+.cargando-barra{ 
+    position: relative; 
+    color: #660000;
+    margin-top: 2em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase
+}
+
+.texto-cargando{ 
+    padding-top:20px;
+    color:#330000;
+} 
+
+.inicial-circulo {
+    margin-bottom: 1vh;
+    padding: 1vw;
+    width: 1vh;
+    height: 1vh;
+    background-color: #E7757A;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.precios{
+    font-size: 2vmin;
+    padding-right: 18vw;
+}
+
+.acomodar{
+    margin: 0%; 
+    display: flex;
+    align-items: flex-end; 
+
+}
+
+.texto{
+    padding: 0.5vw;
+    text-align: center;
+    font-size: 2vmin;
+    font-size: 1vmax;
+}
+
+
+.centrar {
+    padding: 0.5vw;
+    text-align: center;
+    font-size: 2vmin;
+    font-size: 2vmax;
+    font-weight: bold;
+}

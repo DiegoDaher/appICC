@@ -1,0 +1,77 @@
+.prueba {
+    font-size: medium;
+    color: #ba3e11;
+}
+
+.div-graficas {
+    color: rgb(0, 0, 0);
+    padding: 2vw;
+    margin: 1rem;
+    width: 32vw;
+    height: 17vw;
+    background-color: #f0f0f0;
+    border-radius: 2rem;
+}
+
+
+.div-grafica {
+    padding: 1vw;
+    margin: 1vw;
+    color: white;
+}
+
+/*__________Cajita con sombras_________*/
+.div-muestra,
+.div-muestra-2,
+.div-muestra-3,
+.div-muestra-4,
+.div-graficas {
+    box-shadow: -10px 11px 18px -7px rgba(39,39,39,0.42);
+    -webkit-box-shadow: -10px 11px 18px -7px rgba(39,39,39,0.42);
+    -moz-box-shadow: -10px 11px 18px -7px rgba(39,39,39,0.42);
+}
+
+.div-muestra,
+.div-muestra-2{
+    padding: 2vw;
+    margin: 1rem;
+    width: 20vw;
+    height: 6vw;
+    border-radius: 2rem;
+}
+
+.div-muestra-3 {
+    padding: 2vw;
+    margin: 1rem;
+    width: 20vw;
+    height:17vw;
+    border-radius: 2rem;
+}
+.div-muestra {
+    background-color: #FD908B;
+}
+
+.div-muestra-dañada {
+    background-color: #d26e69;
+    padding: 2vw;
+    margin: 1rem;
+    width: 20vw;
+    height:17vw;
+    border-radius: 2rem;
+}
+
+.div-muestra-2 {
+    background-color: #FFC7BC;
+}
+.div-muestra-3 {
+  background-color: #f9dca3; /* azul claro para "En peligro" */
+    padding: 2vw;
+    margin: 1rem;
+    width: 20vw;
+    height:17vw;
+    border-radius: 2rem;
+}
+
+.div-muestra-4 {
+  background-color: #f9dda3; /* amarillo claro para "Protegida" */
+}

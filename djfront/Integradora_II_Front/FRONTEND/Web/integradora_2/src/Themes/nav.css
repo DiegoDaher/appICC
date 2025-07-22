@@ -1,0 +1,140 @@
+/*___________tab navigator___________*/
+.menu{
+    height: 8vh;
+    margin: 1vw;
+    margin-top: 1vw;
+    cursor: 'pointer'; 
+    margin-bottom: '2vw';
+}
+
+.tabNavigator{
+    margin: 0%;
+    margin-right: 91vw;
+    margin-bottom: 1vw;
+    padding: 0;
+    display: flex;
+}
+
+li{
+    list-style-type: none;
+}
+.textbarra{
+    position: absolute;
+    margin-left: 4vw;
+    margin-top: 1vw;
+}
+.textbarra.activate{
+    background-color: rgb(231, 65, 65);
+}
+
+a{
+    outline: none;
+    text-decoration: none;
+    color: #000000;
+    text-align: center; 
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.sidebar {
+    width: 5vw;
+    transition: width 0.5s cubic-bezier(.4,2,.6,1), box-shadow 0.5s, background 0.3s;
+    background: #fff;
+    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.07);
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.sidebar-open {
+    width: 24vh;
+}
+
+.sidebar-closed {
+    width: 6.5vw;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 2vw;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    width: 100%;
+    padding: 0.1vw 0.1vw 0.1vw 0.1vw;
+    transition: background 0.2s;
+    border-radius: 1vw;
+}
+
+.nav-link:hover {
+    background-color: #e9727293;
+    padding: 0vw 0vw 0vw 0vw ;
+    transition: background 0.2s;
+
+}
+
+.paciente-link {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    width: 13vh;
+    padding: 0.5vw 1vw;
+    transition: background 0.2s;
+    border-radius: 1vw;
+}
+.paciente-link:hover {
+    background-color: #e9727293;
+    /*padding: 0.5vw 1vw;*/
+    transition: background 0.2s;
+    width: 13vh;
+}
+
+
+
+.sidebar-closed .textbarra {
+    opacity: 0;
+    width: 0;
+    margin-left: 0;
+    pointer-events: none;
+}
+
+.logout-btn {
+            margin-bottom: 1.25rem;
+            cursor: pointer;
+}
+.logout-btn img {
+            width: 2.5rem;
+            height: 2.5rem;
+}
+
+.bordes{
+    display: flex;
+    padding: 1.5vh 0vh 2vh 1.5vh;
+    height: 2vmin;
+    height: 2.5vmax;
+    width: 7vmin;
+    width: 10vmax;
+    font-size: 2vmin;
+    font-size: 1vmax;
+    margin-bottom: 0%;
+    border-radius: 1vh;
+
+}
+.bordes.active {
+    color: rgb(255, 255, 255);
+    background-color: rgb(231, 65, 65);
+    border-radius: 1vh;
+}

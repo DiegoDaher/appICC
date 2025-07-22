@@ -1,0 +1,11 @@
+//export { default as Login } from './Login'
+//export { default as Recuperacion } from './Recuperacion'
+
+export { default as Pedidos } from './Pedidos'
+export { default as Muestras } from './Muestras'
+export { default as Escaner } from './Escaner'
+export { default as Dashboard } from './Dashboard'
+export { default as PacienteInicio } from './PacienteInicio'
+export { default as Perfil } from './Perfil'
+export { default as Recuperacion } from './Recuperacion'
+export { default as Login } from './Login'

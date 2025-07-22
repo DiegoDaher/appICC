@@ -1,0 +1,56 @@
+
+/*________iconos e imagenes________*/
+.imagen-prueba{
+    width: 2vw;
+    height: 2vw;
+}
+.iconos{
+    width: 2vw;
+    height: 2vw;
+    padding: 1px;
+    display:flex;
+}
+
+.icono-borrar{
+    height: 2vw;
+    width: 2vw;
+    margin-left: 15vw;
+    margin-top: 1vw;
+}
+.icono-correo{  
+    height: 2vw;
+    width: 2vw;
+    margin-left:1.5vw ;
+    position: relative;
+}
+.icono-user{
+    width: 2vw;
+    height: 2vw;
+    padding: 5px;
+}
+
+.acomodar-iconos{
+    margin-left: 8vw;
+    height: .9vw;
+}
+.acomodar-iconos-2{
+    position: absolute;
+    margin-left: 20vw;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.imgMuestra{
+    width: 4vw;
+    height: 4vw;
+    margin-left: 5vw;
+    margin:auto;
+}
+
+.cerrar-sesion{ 
+    margin-top: 16vw;
+}

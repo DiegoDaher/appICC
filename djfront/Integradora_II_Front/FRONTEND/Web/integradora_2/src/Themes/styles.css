@@ -1,0 +1,62 @@
+/*__________Estilos de la base_______________*/
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.perfil{
+    margin-top: 1vw;
+    margin-left: 2vw;
+    background-color: #e9e6e9;
+    min-height: 4vw;
+    max-height: 4vw;
+    min-width: 4vw;
+    max-width: 4vw;
+}
+
+.contenedor{
+    background-color: #FEF7FF;
+    padding: 2vh;
+    margin: 0%;
+}
+
+.plantilla{
+    background-color: #FFFF;
+    padding: 2vw 6vw 2vw 4vw;
+    border-radius: 2rem;
+    min-height: auto;
+    max-height: auto;
+    width: auto ;
+}
+
+.content-expanded {
+    margin-left: 2vw;
+    max-width: 70vw;
+}
+
+.content-collapsed {
+    margin-left: 2vw;
+    max-width: 80vw;
+}
+
+
+@media (max-width: 468px) {
+    .sidebar,
+    .sidebar-open,
+    .sidebar-closed {
+        width: 12vw;
+        min-width: 12vw;
+    }
+    .sidebar-open {
+        width: 40vw;
+    }
+    .plantilla {
+        margin-left: 12vw;
+
+    }
+    .content-expanded {
+        margin-left: 40vw;
+        
+    }
+}
+
